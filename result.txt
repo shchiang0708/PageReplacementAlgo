@@ -1,0 +1,227 @@
+"C:\Program Files\Java\jdk1.8.0_251\bin\java.exe" "-javaagent:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\lib\idea_rt.jar=64343:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_251\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\rt.jar;D:\NSYSU\課程\Advanced Operation System\PageReplacementAlgo\out\production\PageReplacementAlgo" Main
+
+
+How to pick?
+(1)Random pick (2)Locality pick (3)My pick (4)Exit
+1
+Frame = 10
+    	PageFault	Interrupt	DiskWrite
+FIFO        97976      122865       24889
+OPT         84199      108101       23902
+ESC         98005      122528       24523
+MyAlgo      98053      122607       24554
+
+Frame = 20
+    	PageFault	Interrupt	DiskWrite
+FIFO        95907      120666       24759
+OPT         76101       99305       23204
+ESC         95947      119954       24007
+MyAlgo      96137      120211       24074
+
+Frame = 30
+    	PageFault	Interrupt	DiskWrite
+FIFO        93957      118588       24631
+OPT         70134       92729       22595
+ESC         93945      117451       23506
+MyAlgo      94165      117737       23572
+
+Frame = 40
+    	PageFault	Interrupt	DiskWrite
+FIFO        91920      116424       24504
+OPT         65266       87341       22075
+ESC         92032      115034       23002
+MyAlgo      92166      115238       23072
+
+Frame = 50
+    	PageFault	Interrupt	DiskWrite
+FIFO        90036      114424       24388
+OPT         61101       82682       21581
+ESC         90007      112507       22500
+MyAlgo      90189      112803       22614
+
+Frame = 60
+    	PageFault	Interrupt	DiskWrite
+FIFO        88084      112322       24238
+OPT         57419       78497       21078
+ESC         87927      109838       21911
+MyAlgo      88141      110190       22049
+
+Frame = 70
+    	PageFault	Interrupt	DiskWrite
+FIFO        86189      110285       24096
+OPT         54092       74726       20634
+ESC         86036      107531       21495
+MyAlgo      86141      107708       21567
+
+Frame = 80
+    	PageFault	Interrupt	DiskWrite
+FIFO        84163      108143       23980
+OPT         51067       71235       20168
+ESC         84065      105055       20990
+MyAlgo      84095      105138       21043
+
+Frame = 90
+    	PageFault	Interrupt	DiskWrite
+FIFO        82131      105948       23817
+OPT         48254       67935       19681
+ESC         81890      102363       20473
+MyAlgo      82148      102716       20568
+
+Frame = 100
+    	PageFault	Interrupt	DiskWrite
+FIFO        80209      103898       23689
+OPT         45653       64908       19255
+ESC         79914       99838       19924
+MyAlgo      80215      100286       20071
+
+How to pick?
+(1)Random pick (2)Locality pick (3)My pick (4)Exit
+2
+Frame = 10
+    	PageFault	Interrupt	DiskWrite
+FIFO       100000      125018       25018
+OPT         94068      118598       24530
+ESC         98437      123070       24633
+MyAlgo      99141      123954       24813
+
+Frame = 20
+    	PageFault	Interrupt	DiskWrite
+FIFO        99832      124836       25004
+OPT         87947      111977       24030
+ESC         96398      120496       24098
+MyAlgo      96853      121078       24225
+
+Frame = 30
+    	PageFault	Interrupt	DiskWrite
+FIFO        99472      124454       24982
+OPT         81887      105412       23525
+ESC         94415      118000       23585
+MyAlgo      94787      118485       23698
+
+Frame = 40
+    	PageFault	Interrupt	DiskWrite
+FIFO        96954      121755       24801
+OPT         76437       99445       23008
+ESC         92322      115361       23039
+MyAlgo      92822      116006       23184
+
+Frame = 50
+    	PageFault	Interrupt	DiskWrite
+FIFO        91363      115794       24431
+OPT         71974       94530       22556
+ESC         90122      112603       22481
+MyAlgo      90934      113639       22705
+
+Frame = 60
+    	PageFault	Interrupt	DiskWrite
+FIFO        90589      114960       24371
+OPT         68292       90363       22071
+ESC         88027      109975       21948
+MyAlgo      88948      111172       22224
+
+Frame = 70
+    	PageFault	Interrupt	DiskWrite
+FIFO        90176      114507       24331
+OPT         64709       86332       21623
+ESC         86072      107505       21433
+MyAlgo      86867      108552       21685
+
+Frame = 80
+    	PageFault	Interrupt	DiskWrite
+FIFO        87431      111559       24128
+OPT         61261       82433       21172
+ESC         84300      105272       20972
+MyAlgo      84964      106177       21213
+
+Frame = 90
+    	PageFault	Interrupt	DiskWrite
+FIFO        84871      108821       23950
+OPT         58105       78864       20759
+ESC         82177      102626       20449
+MyAlgo      82648      103262       20614
+
+Frame = 100
+    	PageFault	Interrupt	DiskWrite
+FIFO        82525      106321       23796
+OPT         55283       75650       20367
+ESC         80180      100113       19933
+MyAlgo      80729      100818       20089
+
+How to pick?
+(1)Random pick (2)Locality pick (3)My pick (4)Exit
+3
+Frame = 10
+    	PageFault	Interrupt	DiskWrite
+FIFO        42849       61421       18572
+OPT         14874       18649        3775
+ESC         15434       19247        3813
+MyAlgo      37940       47556        9616
+
+Frame = 20
+    	PageFault	Interrupt	DiskWrite
+FIFO        23445       34812       11367
+OPT         12709       16334        3625
+ESC         15102       18819        3717
+MyAlgo      22355       28148        5793
+
+Frame = 30
+    	PageFault	Interrupt	DiskWrite
+FIFO        19617       28163        8546
+OPT         11549       15075        3526
+ESC         14817       18451        3634
+MyAlgo      18779       23628        4849
+
+Frame = 40
+    	PageFault	Interrupt	DiskWrite
+FIFO        17816       24920        7104
+OPT         10676       14100        3424
+ESC         14479       18030        3551
+MyAlgo      17075       21471        4396
+
+Frame = 50
+    	PageFault	Interrupt	DiskWrite
+FIFO        16664       22926        6262
+OPT          9960       13297        3337
+ESC         14192       17673        3481
+MyAlgo      15952       20051        4099
+
+Frame = 60
+    	PageFault	Interrupt	DiskWrite
+FIFO        15851       21581        5730
+OPT          9321       12570        3249
+ESC         13879       17264        3385
+MyAlgo      15450       19340        3890
+
+Frame = 70
+    	PageFault	Interrupt	DiskWrite
+FIFO        15194       20556        5362
+OPT          8775       11947        3172
+ESC         13573       16882        3309
+MyAlgo      14779       18481        3702
+
+Frame = 80
+    	PageFault	Interrupt	DiskWrite
+FIFO        14615       19690        5075
+OPT          8282       11375        3093
+ESC         13269       16479        3210
+MyAlgo      14226       17787        3561
+
+Frame = 90
+    	PageFault	Interrupt	DiskWrite
+FIFO        14129       18971        4842
+OPT          7837       10851        3014
+ESC         12940       16057        3117
+MyAlgo      13886       17287        3401
+
+Frame = 100
+    	PageFault	Interrupt	DiskWrite
+FIFO        13655       18322        4667
+OPT          7421       10371        2950
+ESC         12638       15667        3029
+MyAlgo      13312       16595        3283
+
+How to pick?
+(1)Random pick (2)Locality pick (3)My pick (4)Exit
+4
+
+Process finished with exit code 0

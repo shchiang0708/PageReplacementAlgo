@@ -22,6 +22,10 @@ public class Optimal extends PageAlgo{
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
+            }else{
+                // Update dirty bit
+                if(!dirty.get(refString[i]))
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("OPT %13d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);

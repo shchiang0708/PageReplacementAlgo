@@ -24,6 +24,10 @@ public class FIFO extends PageAlgo{
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
+            }else{
+                // Update dirty bit
+                if(!dirty.get(refString[i]))
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.println("    \tPageFault\tInterrupt\tDiskWrite");
