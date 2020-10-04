@@ -18,21 +18,21 @@ public class MyAlgo extends PageAlgo{
                 interrupt++;
                 if(size == frameSize){ // frame is full
                     int out = findVictim();
-                    boolean isModify = map.get(out);
+                    boolean isModify = dirty.get(out);
                     if(isModify)
                         WriteToDisk();
-                    map.remove(out);
+                    dirty.remove(out);
                     frame.remove(new Integer(out));
                 }
                 frame.add(refString[i]);
-                map.put(refString[i], modify[i]);
+                dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("MyAlgo %10d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);
     }
 
     private int findVictim(){
-        for(Map.Entry<Integer, Boolean> entry: map.entrySet()){
+        for(Map.Entry<Integer, Boolean> entry: dirty.entrySet()){
             if(entry.getValue() == false)
                 return entry.getKey();
         }

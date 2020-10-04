@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         int frameSize = 10;
         int[] refString = generateRefString();
-        boolean[] modify = generateModify(15, refString.length);
+        boolean[] modify = generateModify(25, refString.length);
 //        FIFO fifo = new FIFO(refString, modify, frameSize);
 //        fifo.run();
 //        Optimal opt = new Optimal(refString, modify, frameSize);
@@ -14,8 +14,11 @@ public class Main {
             fifo.run();
             Optimal opt = new Optimal(refString, modify, frameSize);
             opt.run();
+            ESC esc = new ESC(refString, modify, frameSize);
+            esc.run();
             MyAlgo myAlgo = new MyAlgo(refString, modify, frameSize);
             myAlgo.run();
+
             System.out.println();
             frameSize = frameSize + 10;
         }

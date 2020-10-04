@@ -17,14 +17,14 @@ public class FIFO extends PageAlgo{
                 if (size == frameSize) { // frame is full
                     // Check the replaced page is modified, if so, write to disk
                     int out = frame.poll();
-                    boolean isModify = map.get(out);
+                    boolean isModify = dirty.get(out);
                     if (isModify) {
                         WriteToDisk();
                     }
-                    map.remove(out);
+                    dirty.remove(out);
                 }
                 frame.offer(refString[i]);
-                map.put(refString[i], modify[i]);
+                dirty.put(refString[i], modify[i]);
             }
         }
         System.out.println("    \tPageFault\tInterrupt\tDiskWrite");

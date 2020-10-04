@@ -18,14 +18,14 @@ public class Optimal extends PageAlgo{
                 interrupt++;
                 if(size == frameSize){ // frame is full
                     int out = findVictim(i + 1);
-                    boolean isModify = map.get(out);
+                    boolean isModify = dirty.get(out);
                     if(isModify)
                         WriteToDisk();
-                    map.remove(out);
+                    dirty.remove(out);
                     frame.remove(new Integer(out));
                 }
                 frame.add(refString[i]);
-                map.put(refString[i], modify[i]);
+                dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("OPT %13d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);
@@ -38,11 +38,12 @@ public class Optimal extends PageAlgo{
         }
 
         for(int i = n; i < refString.length; i++){
-            if(list.contains(new Integer(refString[i])) && list.size() > 1){
+            if(list.contains(new Integer(refString[i]))){
                 list.remove(new Integer(refString[i]));
             }
+            if(list.size() == 1)
+                break;
         }
-
         return list.get(0);
     }
 }

@@ -9,8 +9,8 @@ abstract public class PageAlgo {
     protected int pageFault;
     protected int interrupt;
     protected int diskWrite;
-    protected Map<Integer, Boolean> map; // To check the replaced page is modified or not
-
+    protected Map<Integer, Boolean> dirty; // To check the replaced page is modified or not
+    protected Map<Integer, Boolean> ref; // reference bits
     public PageAlgo(int[] refString, boolean[] modify, int frameSize){
         this.refString = refString;
         this.modify = modify;
@@ -18,7 +18,8 @@ abstract public class PageAlgo {
         this.pageFault = 0;
         this.interrupt = 0;
         this.diskWrite = 0;
-        map = new HashMap<>();
+        dirty = new HashMap<>();
+        ref = new HashMap<>();
     }
 
     protected void WriteToDisk(){
