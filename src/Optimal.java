@@ -1,13 +1,9 @@
-import sun.awt.image.ImageWatched;
-
 import java.util.*;
 
 public class Optimal extends PageAlgo{
-    private List<Integer> frame;
 
     public Optimal(int[] refString, boolean[] modify, int frameSize){
         super(refString, modify, frameSize);
-        frame = new LinkedList<>();
     }
     @Override
     public void run() {
@@ -21,8 +17,8 @@ public class Optimal extends PageAlgo{
                     boolean isModify = dirty.get(out);
                     if(isModify)
                         WriteToDisk();
-                    dirty.remove(out);
                     frame.remove(new Integer(out));
+                    dirty.remove(new Integer(out));
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);

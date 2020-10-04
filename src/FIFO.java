@@ -1,11 +1,9 @@
-import java.util.*;
+
 
 public class FIFO extends PageAlgo{
-    private Queue<Integer> frame;
 
     public FIFO(int[] refString, boolean[] modify, int frameSize) {
         super(refString, modify, frameSize);
-        this.frame = new LinkedList<>();
     }
 
     public void run(){
@@ -16,14 +14,15 @@ public class FIFO extends PageAlgo{
                 interrupt++;
                 if (size == frameSize) { // frame is full
                     // Check the replaced page is modified, if so, write to disk
-                    int out = frame.poll();
+                    int out = frame.get(0);
                     boolean isModify = dirty.get(out);
                     if (isModify) {
                         WriteToDisk();
                     }
-                    dirty.remove(out);
+                    dirty.remove(new Integer(out));
+                    frame.remove(new Integer(out));
                 }
-                frame.offer(refString[i]);
+                frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
             }
         }

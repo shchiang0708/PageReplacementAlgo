@@ -1,14 +1,7 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 public class ESC extends PageAlgo{
-    private List<Integer> frame;
 
     public ESC(int[] refString, boolean[] modify, int frameSize){
         super(refString, modify, frameSize);
-        frame = new LinkedList<>();
     }
     @Override
     public void run() {
@@ -22,13 +15,13 @@ public class ESC extends PageAlgo{
                     boolean isModify = dirty.get(out);
                     if(isModify)
                         WriteToDisk();
-                    dirty.remove(out);
                     ref.remove(out);
                     frame.remove(new Integer(out));
+                    dirty.remove(out);
                 }
                 frame.add(refString[i]);
-                dirty.put(refString[i], modify[i]);
                 ref.put(refString[i], false);
+                dirty.put(refString[i], modify[i]);
             }else{ // if frame contains current string, set reference bit = 1
                 ref.put(refString[i], true);
             }
@@ -39,7 +32,7 @@ public class ESC extends PageAlgo{
     private int findVictim(){
         // 1. find (0, 0)
         for(int i = 0; i < frame.size(); i++){
-            if(ref.get(frame.get(i)) && dirty.get(frame.get(i))){
+            if(!ref.get(frame.get(i)) && !dirty.get(frame.get(i))){
                 return frame.get(i);
             }
         }
@@ -55,11 +48,11 @@ public class ESC extends PageAlgo{
         }
         // 4. find (0, 0) again
         for(int i = 0; i < frame.size(); i++){
-            if(ref.get(frame.get(i)) && dirty.get(frame.get(i))){
+            if(!ref.get(frame.get(i)) && !dirty.get(frame.get(i))){
                 return frame.get(i);
             }
         }
-        // 4. find(0, 1) again
+        // 5. find (0, 1) again
         for(int i = 0; i < frame.size(); i++){
             if(!ref.get(frame.get(i)) && dirty.get(frame.get(i))){
                 return frame.get(i);

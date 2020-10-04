@@ -1,13 +1,7 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 public class MyAlgo extends PageAlgo{
-    List<Integer> frame;
 
     public MyAlgo(int[] refString, boolean[] modify, int frameSize){
         super(refString, modify, frameSize);
-        frame = new LinkedList<>();
     }
     @Override
     public void run() {
@@ -19,10 +13,11 @@ public class MyAlgo extends PageAlgo{
                 if(size == frameSize){ // frame is full
                     int out = findVictim();
                     boolean isModify = dirty.get(out);
-                    if(isModify)
+                    if(isModify) {
                         WriteToDisk();
-                    dirty.remove(out);
+                    }
                     frame.remove(new Integer(out));
+                    dirty.remove(new Integer(out));
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
@@ -32,9 +27,9 @@ public class MyAlgo extends PageAlgo{
     }
 
     private int findVictim(){
-        for(Map.Entry<Integer, Boolean> entry: dirty.entrySet()){
-            if(entry.getValue() == false)
-                return entry.getKey();
+        for(int i = 0; i < frame.size(); i++){
+            if(dirty.get(frame.get(i)) == false)
+                return frame.get(i);
         }
         return frame.get(0);
     }
