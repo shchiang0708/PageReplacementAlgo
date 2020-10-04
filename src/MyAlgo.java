@@ -6,7 +6,7 @@ public class MyAlgo extends PageAlgo{
     public void run() {
         for(int i = 0; i < refString.length; i++){
             int size = frame.size();
-            if(!frame.contains(refString[i])){
+            if(!frame.contains(refString[i])){ // page fault
                 pageFault++;
                 interrupt++;
                 if(size == frameSize){ // frame is full
@@ -20,6 +20,10 @@ public class MyAlgo extends PageAlgo{
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
+            }else{
+                // Update dirty bit
+                if(!dirty.get(refString[i]))
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("MyAlgo %10d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);

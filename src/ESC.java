@@ -22,8 +22,12 @@ public class ESC extends PageAlgo{
                 frame.add(refString[i]);
                 ref.put(refString[i], false);
                 dirty.put(refString[i], modify[i]);
-            }else{ // if frame contains current string, set reference bit = 1
+            }else{
+                // if frame contains current string, set reference bit = 1
                 ref.put(refString[i], true);
+                // Update dirty bit
+                if(!dirty.get(refString[i]))
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("ESC %13d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);

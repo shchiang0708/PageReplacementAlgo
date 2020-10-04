@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     private static int lengthOfRefString = 100000;
-    private static final boolean[] modify = generateModify(15, lengthOfRefString);
+    private static final boolean[] modify = generateModify(25, lengthOfRefString);
     private static final int[] randomRefString = generateRandom();
     private static final int[] localityRefString = generateLocality();
     private static final int[] MyRefString = generateMyPick();
@@ -149,8 +149,8 @@ public class Main {
         int idx = 0;
         while(idx < lengthOfRefString){
             double rand = Math.random() * 100;
-            // set threshhold as 70%, which means the function is called very often
-            if(rand <= 70) {
+            // set threshhold as 40%, which represent the frequent of function call
+            if(rand <= 40) {
 //                for(int i = 0; i < s.length; i++){
 //                    if(idx < lengthOfRefString){
 //                        refString[idx++] = s[i];
