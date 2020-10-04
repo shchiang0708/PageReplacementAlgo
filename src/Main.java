@@ -15,7 +15,17 @@ public class Main {
         ESC esc;
         MyAlgo myAlgo;
         Scanner sc = new Scanner(System.in);
-
+//        int frameSize = 3;
+//        refString = randomRefString;
+//        fifo = new FIFO(refString, modify, frameSize);
+//        fifo.run();
+//        opt = new Optimal(refString, modify, frameSize);
+//        opt.run();
+//        esc = new ESC(refString, modify, frameSize);
+//        esc.run();
+//        myAlgo = new MyAlgo(refString, modify, frameSize);
+//        myAlgo.run();
+//
         while(true){
             System.out.println("How to pick?");
             System.out.println("(1)Random pick (2)Locality pick (3)My pick (4)Exit");
@@ -25,8 +35,8 @@ public class Main {
             }else if(choice == 2){
                 refString = localityRefString;
             }else if (choice == 3){
-                // Simulate a function being called very often, but irregularity
-                // ex: list.add();
+                // Simulate a function being called very often, but irregularly
+                // ex: list.add(), ;
                 refString = MyRefString;
             }else {
                 break;
@@ -35,12 +45,17 @@ public class Main {
             int frameSize = 10;
             while(frameSize <= 100) {
                 System.out.println("Frame = " + frameSize);
+                // FIFO
                 fifo = new FIFO(refString, modify, frameSize);
                 fifo.run();
+                // Optimal
                 opt = new Optimal(refString, modify, frameSize);
                 opt.run();
+                // Enhanced Second Chance
                 esc = new ESC(refString, modify, frameSize);
                 esc.run();
+                // My algorithm
+                // Based on FIFO, but running with dirty bits.
                 myAlgo = new MyAlgo(refString, modify, frameSize);
                 myAlgo.run();
 
@@ -90,7 +105,7 @@ public class Main {
 
         partition.put(n, new int[]{cur, 500});
 //*******************************************************************
-//      Randomly select partition to add into reference string
+//      Randomly select partition and add whole elements of partition into reference string
         int[] refString = new int[lengthOfRefString];
         int idx = 0;
         while(idx < lengthOfRefString){
@@ -124,6 +139,8 @@ public class Main {
 
     public static int[] generateMyPick(){
         int[] refString = new int[lengthOfRefString];
+
+        // Select a consecurive pages of length 7 simulated as a function
         int range = 7;
         int start = (int)(Math.random() * 500) + 1 - range;
 
@@ -132,6 +149,7 @@ public class Main {
         int idx = 0;
         while(idx < lengthOfRefString){
             double rand = Math.random() * 100;
+            // set threshhold as 70%, which means the function is called very often
             if(rand <= 70) {
 //                for(int i = 0; i < s.length; i++){
 //                    if(idx < lengthOfRefString){

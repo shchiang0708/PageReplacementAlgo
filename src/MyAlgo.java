@@ -1,5 +1,4 @@
 public class MyAlgo extends PageAlgo{
-
     public MyAlgo(int[] refString, boolean[] modify, int frameSize){
         super(refString, modify, frameSize);
     }
