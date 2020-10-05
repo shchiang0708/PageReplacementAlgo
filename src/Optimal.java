@@ -18,7 +18,7 @@ public class Optimal extends PageAlgo{
                     if(isModify)
                         WriteToDisk();
                     frame.remove(new Integer(out));
-                    dirty.remove(new Integer(out));
+                    dirty.remove(out);
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
@@ -32,15 +32,10 @@ public class Optimal extends PageAlgo{
     }
 
     private int findVictim(int n){
-        List<Integer> list = new LinkedList<>();
-        for(int i = 0; i < frame.size(); i++){
-            list.add(frame.get(i));
-        }
+        List<Integer> list = new LinkedList<>(frame);
 
         for(int i = n; i < refString.length; i++){
-            if(list.contains(new Integer(refString[i]))){
-                list.remove(new Integer(refString[i]));
-            }
+            list.remove(new Integer(refString[i]));
             if(list.size() == 1)
                 break;
         }

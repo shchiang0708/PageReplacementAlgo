@@ -36,13 +36,13 @@ public class ESC extends PageAlgo{
     private int findVictim(){
         // 1. find (0, 0)
         for(int i = 0; i < frame.size(); i++){
-            if(!ref.get(frame.get(i)) && !dirty.get(frame.get(i))){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == false){
                 return frame.get(i);
             }
         }
         // 2. find (0, 1)
         for(int i = 0; i < frame.size(); i++){
-            if(!ref.get(frame.get(i)) && dirty.get(frame.get(i))){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == true){
                 return frame.get(i);
             }
         }
@@ -52,13 +52,13 @@ public class ESC extends PageAlgo{
         }
         // 4. find (0, 0) again
         for(int i = 0; i < frame.size(); i++){
-            if(!ref.get(frame.get(i)) && !dirty.get(frame.get(i))){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == false){
                 return frame.get(i);
             }
         }
         // 5. find (0, 1) again
         for(int i = 0; i < frame.size(); i++){
-            if(!ref.get(frame.get(i)) && dirty.get(frame.get(i))){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == true){
                 return frame.get(i);
             }
         }

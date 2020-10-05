@@ -16,7 +16,7 @@ public class MyAlgo extends PageAlgo{
                         WriteToDisk();
                     }
                     frame.remove(new Integer(out));
-                    dirty.remove(new Integer(out));
+                    dirty.remove(out);
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
