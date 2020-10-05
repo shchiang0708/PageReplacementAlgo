@@ -1,19 +1,15 @@
 import java.util.*;
 
 public class Main {
-    private static int lengthOfRefString = 100000;
-    private static final boolean[] modify = generateModify(25, lengthOfRefString);
+    private static final int lengthOfRefString = 100000;
+    private static final boolean[] modify = generateModify(25);
     private static final int[] randomRefString = generateRandom();
     private static final int[] localityRefString = generateLocality();
     private static final int[] MyRefString = generateMyPick();
     public static void main(String[] args) {
 
-        int[] refString = new int[lengthOfRefString];
+        int[] refString;
 
-        FIFO fifo;
-        Optimal opt;
-        ESC esc;
-        MyAlgo myAlgo;
         Scanner sc = new Scanner(System.in);
 //        int frameSize = 3;
 //        refString = randomRefString;
@@ -46,17 +42,17 @@ public class Main {
             while(frameSize <= 100) {
                 System.out.println("Frame = " + frameSize);
                 // FIFO
-                fifo = new FIFO(refString, modify, frameSize);
+                FIFO fifo = new FIFO(refString, modify, frameSize);
                 fifo.run();
                 // Optimal
-                opt = new Optimal(refString, modify, frameSize);
+                Optimal opt = new Optimal(refString, modify, frameSize);
                 opt.run();
                 // Enhanced Second Chance
-                esc = new ESC(refString, modify, frameSize);
+                ESC esc = new ESC(refString, modify, frameSize);
                 esc.run();
                 // My algorithm
                 // Based on FIFO, but running with dirty bits.
-                myAlgo = new MyAlgo(refString, modify, frameSize);
+                MyAlgo myAlgo = new MyAlgo(refString, modify, frameSize);
                 myAlgo.run();
 
                 System.out.println();
@@ -78,10 +74,9 @@ public class Main {
         }
         return n;
     }
-    public static boolean[] generateModify(double prob, int length){
-        boolean[] res = new boolean[length];
-        int count = 0;
-        for(int i = 0; i < length; i++){
+    public static boolean[] generateModify(double prob){
+        boolean[] res = new boolean[lengthOfRefString];
+        for(int i = 0; i < lengthOfRefString; i++){
             double rand = Math.random() * 100;
             res[i] = rand <= prob;
         }
@@ -91,12 +86,13 @@ public class Main {
     public static int[] generateLocality(){
 //*******************************************************************
 //      To partition reference string as different function
+//      subset of 1/20 to 1/50 (10 - 25)
         Map<Integer, int[]> partition = new HashMap<>();
         int remain = 500;
         int cur = 1;
         int n = 0;
-        while(remain > 50){
-            int range = (int) (Math.random() * 25) + 25;
+        while(remain > 25){
+            int range = (int) (Math.random() * 15) + 10;
             partition.put(n, new int[]{cur, cur + range});
             n = n + 1;
             remain = remain - range;
@@ -162,9 +158,7 @@ public class Main {
                     }
                 }
             }else{
-                if(idx < lengthOfRefString) {
-                    refString[idx++] = (int)(Math.random() * 500) + 1;
-                }
+                refString[idx++] = (int)(Math.random() * 500) + 1;
             }
         }
         return refString;
