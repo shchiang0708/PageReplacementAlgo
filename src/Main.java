@@ -86,17 +86,18 @@ public class Main {
     public static int[] generateLocality(){
 //*******************************************************************
 //      To partition reference string as different function
-//      subset of 1/20 to 1/50 (10 - 25)
+//      subset of 1/20 to 1/10 (25 - 50)
         Map<Integer, int[]> partition = new HashMap<>();
         int remain = 500;
         int cur = 1;
         int n = 0;
-        while(remain > 25){
-            int range = (int) (Math.random() * 15) + 10;
-            partition.put(n, new int[]{cur, cur + range});
+        Random rand = new Random();
+        while(remain > 50){
+            int range = rand.nextInt(26) + 25;
+            partition.put(n, new int[]{cur, cur + range - 1});
             n = n + 1;
             remain = remain - range;
-            cur = cur + range + 1;
+            cur = cur + range;
         }
 
         partition.put(n, new int[]{cur, 500});
@@ -105,8 +106,8 @@ public class Main {
         int[] refString = new int[lengthOfRefString];
         int idx = 0;
         while(idx < lengthOfRefString){
-            int rand = (int) (Math.random() * partition.size());
-            int[] p = partition.get(rand);
+            int r = rand.nextInt(partition.size());
+            int[] p = partition.get(r);
             for(int i = p[0]; i <= p[1]; i++){
                 if(idx < lengthOfRefString)
                     refString[idx++] = i;
