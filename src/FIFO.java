@@ -20,7 +20,7 @@ public class FIFO extends PageAlgo{
                         WriteToDisk();
                     }
                     dirty.remove(out);
-                    frame.remove(new Integer(out));
+                    frame.remove(0);
                 }
                 frame.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
