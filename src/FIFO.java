@@ -30,7 +30,6 @@ public class FIFO extends PageAlgo{
                     dirty.put(refString[i], modify[i]);
             }
         }
-        System.out.println("    \tPageFault\tInterrupt\tDiskWrite");
         System.out.format("FIFO %12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);
 //        System.out.println("The number of page fault = " + pageFault);
 //        System.out.println("The number of interrupt = " + interrupt);

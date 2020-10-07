@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) {
 
         int[] refString;
-
         Scanner sc = new Scanner(System.in);
 //        int frameSize = 3;
 //        refString = randomRefString;
@@ -41,6 +40,8 @@ public class Main {
             int frameSize = 10;
             while(frameSize <= 100) {
                 System.out.println("Frame = " + frameSize);
+                System.out.println("    \tPageFault\tInterrupt\tDiskWrite");
+
                 // FIFO
                 FIFO fifo = new FIFO(refString, modify, frameSize);
                 fifo.run();
@@ -68,17 +69,21 @@ public class Main {
 //        int[] n = {1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6};
 //        int[] n = {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
 //        int[] n = {1,2,3,4,1,2,5,1,2,3,4,5};
+        Random rand = new Random();
+
         int[] n = new int[lengthOfRefString];
         for(int i = 0; i < lengthOfRefString; i++){
-            n[i] = (int)(Math.random() * 500) + 1;
+            n[i] = rand.nextInt(500) + 1;
         }
         return n;
     }
     public static boolean[] generateModify(double prob){
         boolean[] res = new boolean[lengthOfRefString];
+        Random rand = new Random();
+
         for(int i = 0; i < lengthOfRefString; i++){
-            double rand = Math.random() * 100;
-            res[i] = rand <= prob;
+            double ran = rand.nextInt(100);
+            res[i] = ran < prob;
         }
         return res;
     }
@@ -88,18 +93,18 @@ public class Main {
 //      To partition reference string as different function
 //      subset of 1/20 to 1/10 (25 - 50)
         Map<Integer, int[]> partition = new HashMap<>();
-        int remain = 500;
+        Random rand = new Random();
         int cur = 1;
         int n = 0;
-        Random rand = new Random();
-        while(remain > 50){
+
+//      Random a value of page size of each function
+//      When the remaining page is smaller than 50, then the [cur, 500] is set to be a partition
+        while(cur < 450){
             int range = rand.nextInt(26) + 25;
             partition.put(n, new int[]{cur, cur + range - 1});
             n = n + 1;
-            remain = remain - range;
             cur = cur + range;
         }
-
         partition.put(n, new int[]{cur, 500});
 //*******************************************************************
 //      Randomly select partition and add whole elements of partition into reference string
@@ -136,18 +141,19 @@ public class Main {
 
     public static int[] generateMyPick(){
         int[] refString = new int[lengthOfRefString];
+        Random rand = new Random();
 
-        // Select a consecurive pages of length 7 simulated as a function
+        // Select a consecutive pages of length 7 simulated as a function
         int range = 7;
-        int start = (int)(Math.random() * 500) + 1 - range;
+        int start = rand.nextInt(493) + 1;
 
         System.out.println();
         //int[] s = {1,2,3,4,5};
         int idx = 0;
         while(idx < lengthOfRefString){
-            double rand = Math.random() * 100;
-            // set threshhold as 40%, which represent the frequent of function call
-            if(rand <= 40) {
+            int r = rand.nextInt(100);
+            // set threshold as 40%, which represent the frequent of function call
+            if(r < 40) {
 //                for(int i = 0; i < s.length; i++){
 //                    if(idx < lengthOfRefString){
 //                        refString[idx++] = s[i];
@@ -159,7 +165,7 @@ public class Main {
                     }
                 }
             }else{
-                refString[idx++] = (int)(Math.random() * 500) + 1;
+                refString[idx++] = rand.nextInt(500) + 1;
             }
         }
         return refString;
