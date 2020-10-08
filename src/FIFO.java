@@ -8,32 +8,32 @@ public class FIFO extends PageAlgo{
 
     public void run(){
         for(int i = 0; i < refString.length; i++){
-            int size = frame.size();
-            if(!frame.contains(refString[i])) { // page fault
+            int size = page.size();
+            if(!page.contains(refString[i])) { // page fault
                 pageFault++;
-                interrupt++;
                 if (size == frameSize) { // frame is full
                     // Check the replaced page is modified, if so, write to disk
-                    int out = frame.get(0);
+                    int out = page.get(0);
                     boolean isModify = dirty.get(out);
                     if (isModify) {
                         WriteToDisk();
                     }
                     dirty.remove(out);
-                    frame.remove(0);
+                    page.remove(0);
                 }
-                frame.add(refString[i]);
+                page.add(refString[i]);
                 dirty.put(refString[i], modify[i]);
-            }else{
-                // Update dirty bit
+            }
+            else{ // current reference string is in page
+
+//              Update dirty bit
                 if(!dirty.get(refString[i]))
                     dirty.put(refString[i], modify[i]);
             }
+//          if modify bit = 1, cost++
+            if(modify[i] == true)
+                cost++;
         }
-        System.out.format("FIFO %12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite);
-//        System.out.println("The number of page fault = " + pageFault);
-//        System.out.println("The number of interrupt = " + interrupt);
-//        System.out.println("The number of disk write = " + diskWrite);
-
+        System.out.format("FIFO %12d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
     }
 }

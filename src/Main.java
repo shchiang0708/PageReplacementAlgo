@@ -40,14 +40,14 @@ public class Main {
             int frameSize = 20;
             while(frameSize <= 100) {
                 System.out.println("Frame Size = " + frameSize);
-                System.out.println("    \tPageFault\tInterrupt\tDiskWrite");
+                System.out.println("    \tPageFault\t\t Cost\tDiskWrite");
 
                 // FIFO
                 FIFO fifo = new FIFO(refString, modify, frameSize);
                 fifo.run();
-                // Optimal
-                Optimal opt = new Optimal(refString, modify, frameSize);
-                opt.run();
+                // Additional reference bit
+                ARB arb = new ARB(refString, modify, frameSize);
+                arb.run();
                 // Enhanced Second Chance
                 ESC esc = new ESC(refString, modify, frameSize);
                 esc.run();
@@ -87,6 +87,11 @@ public class Main {
                 }
             }
         }
+//        for(int i = 0; i < lengthOfRefString; i++){
+//            int number = rand.nextInt(800) + 1;
+//            n[idx] = number;
+//            idx = idx + 1;
+//        }
         return n;
     }
     public static boolean[] generateModify(double prob){
@@ -102,53 +107,49 @@ public class Main {
 
     public static int[] generateLocality(){
 //*******************************************************************
-//      To partition reference string as different function
-//      subset of 1/20 to 1/10 (25 - 50)
-        Map<Integer, int[]> partition = new HashMap<>();
-        Random rand = new Random();
-        int cur = 1;
-        int n = 0;
-
-//      Random a value of page size of each function
-//      When the remaining page is smaller than 50, then the [cur, 500] is set to be a partition
-        while(cur < 450){
-            int range = rand.nextInt(26) + 25;
-            partition.put(n, new int[]{cur, cur + range - 1});
-            n = n + 1;
-            cur = cur + range;
-        }
-        partition.put(n, new int[]{cur, 500});
-//*******************************************************************
-//      Randomly select partition and add whole elements of partition into reference string
-        int[] refString = new int[lengthOfRefString];
+//      To partition reference string as different procedures
+//      subset of 1/25 to 1/15 (32 - 53)
         int idx = 0;
-        while(idx < lengthOfRefString){
-            int r = rand.nextInt(partition.size());
-            int[] p = partition.get(r);
-            for(int i = p[0]; i <= p[1]; i++){
-                if(idx < lengthOfRefString)
-                    refString[idx++] = i;
+        int[] refString = new int[lengthOfRefString];
+
+        Random rand = new Random();
+        int procedures = rand.nextInt(10) + 21; // 20 - 30 procedures
+        int part = lengthOfRefString / procedures;    // get each procedures size
+
+        for(int i = 0; i < procedures; i++){
+            int range = rand.nextInt(22) + 32; // The number of items of subset
+            int number = rand.nextInt(800) + 1; // Random a number 1 - 800
+            int left = range / 2;
+            int right = range - left - 1;
+
+            int start = number - left;
+            int end = number + right;
+
+//**********************************************************************
+//          Adjust the interval to prevent start < 0 && end > 800
+            if(start < 0){
+                end = end + (0 - start);
+                start = 0;
+            }
+            if(end > 800){
+                start = start - (end - 800);
+                end = 800;
+            }
+//***********************************************************************
+            for(int j = 0; j < part; j++){
+                int n = rand.nextInt(end - start + 1) + start; // Random a number from start and end
+                refString[idx] = n;
+                idx = idx + 1;
             }
         }
-        System.out.println();
+
+        // The partition may not be perfect (procedures * part may not equal to 200000)
+        // so the remaining memory reference will be generated randomly.
+        while(idx < lengthOfRefString){
+            refString[idx] = rand.nextInt(800) + 1;
+            idx = idx + 1;
+        }
         return refString;
-//        int idx = 0;
-//
-//        while(idx < lengthOfRefString) {
-//            int range = (int) (Math.random() * 25) + 25;
-//            int start = (int) (Math.random() * (500 - range));
-//
-//            int[] ts = Arrays.copyOfRange(orgRefString, start, start + range); // temp of reference string
-//           // boolean[] tm = Arrays.copyOfRange(orgModify, start, start + range); // temp of modify bits
-//
-//            for(int i = 0; i < range; i++){
-//                if(idx < lengthOfRefString) {
-//                    refString[idx] = ts[i];
-//                   // modify[idx] = tm[i];
-//                    idx = idx + 1;
-//                }
-//            }
-//        }
     }
 
     public static int[] generateMyPick(){
@@ -157,7 +158,7 @@ public class Main {
 
         // Select a consecutive pages of length 7 simulated as a function
         int range = 7;
-        int start = rand.nextInt(493) + 1;
+        int start = rand.nextInt(793) + 1;
 
         System.out.println();
         //int[] s = {1,2,3,4,5};
@@ -177,7 +178,7 @@ public class Main {
                     }
                 }
             }else{
-                refString[idx++] = rand.nextInt(500) + 1;
+                refString[idx++] = rand.nextInt(800) + 1;
             }
         }
         return refString;
