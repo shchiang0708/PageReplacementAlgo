@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    private static final int lengthOfRefString = 100000;
+    private static final int lengthOfRefString = 200000;
     private static final boolean[] modify = generateModify(25);
     private static final int[] randomRefString = generateRandom();
     private static final int[] localityRefString = generateLocality();
@@ -37,9 +37,9 @@ public class Main {
                 break;
             }
 
-            int frameSize = 10;
+            int frameSize = 20;
             while(frameSize <= 100) {
-                System.out.println("Frame = " + frameSize);
+                System.out.println("Frame Size = " + frameSize);
                 System.out.println("    \tPageFault\tInterrupt\tDiskWrite");
 
                 // FIFO
@@ -57,7 +57,7 @@ public class Main {
                 myAlgo.run();
 
                 System.out.println();
-                frameSize = frameSize + 10;
+                frameSize = frameSize + 20;
             }
         }
 
@@ -70,10 +70,22 @@ public class Main {
 //        int[] n = {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
 //        int[] n = {1,2,3,4,1,2,5,1,2,3,4,5};
         Random rand = new Random();
-
+        int idx = 0;
         int[] n = new int[lengthOfRefString];
-        for(int i = 0; i < lengthOfRefString; i++){
-            n[i] = rand.nextInt(500) + 1;
+        while(idx < lengthOfRefString){
+            int number = rand.nextInt(800) + 1; // Random a number 1 - 800
+            int range = rand.nextInt(25) + 1;   // Random range 1 - 25
+            if(number + range > 800){  // Prevent from generating number > 800
+                number = number - (number + range - 1 - 800);
+            }
+
+            for(int i = 0; i < range; i++){
+                if(idx < lengthOfRefString) {
+                    n[idx] = number;
+                    number = number + 1;
+                    idx = idx + 1;
+                }
+            }
         }
         return n;
     }
