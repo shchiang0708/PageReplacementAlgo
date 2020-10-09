@@ -24,17 +24,14 @@ public class ESC extends PageAlgo{
             }
             else{// current reference string is in page
 
-                // if frame contains current string, set reference bit = 1, cost++
+                // if frame contains current string, set reference bit = 1
                 ref.put(refString[i], true);
-                cost++;
-                // Update dirty bit
-                if(!dirty.get(refString[i]))
+                // Update dirty bit, only when the recorded dirty bit in page = 0
+                // then we check the current memory reference is modify or not
+                // if modify, then set dirty bit = 1
+                if(dirty.get(refString[i]) == false)
                     dirty.put(refString[i], modify[i]);
             }
-//          if the current memory reference is modify, menas we need to set dirty bit
-//          cost++
-            if(modify[i] == true)
-                cost++;
         }
         System.out.format("ESC %13d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
     }
@@ -52,10 +49,11 @@ public class ESC extends PageAlgo{
                 return page.get(i);
             }
         }
-        // 3. clear reference bit
+        // 3. clear reference bit, cost++
         for(int i = 0; i < page.size(); i++){
             ref.put(page.get(i), false);
         }
+        cost++;
         // 4. find (0, 0) again
         for(int i = 0; i < page.size(); i++){
             if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){

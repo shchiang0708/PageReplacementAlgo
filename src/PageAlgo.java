@@ -10,8 +10,8 @@ abstract public class PageAlgo {
     protected int pageFault;
     protected int cost;
     protected int diskWrite;
-    protected Map<Integer, Boolean> ref; // reference bits
-    protected Map<Integer, Boolean> dirty; // dirty bits
+    protected Map<Integer, Boolean> ref; // reference bits, set by hardware, clear by OS
+    protected Map<Integer, Boolean> dirty; // dirty bits, set by hardware, clear by OS
     public PageAlgo(int[] refString, boolean[] modify, int frameSize){
         page = new LinkedList<>();
         this.refString = refString;

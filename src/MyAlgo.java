@@ -21,15 +21,14 @@ public class MyAlgo extends PageAlgo{
                 dirty.put(refString[i], modify[i]);
             }
             else{ // current reference string is in page
-//              Update dirty bit, if modify bit = 1, cost++
-                if(!dirty.get(refString[i])) {
+
+                // Update dirty bit, only when the recorded dirty bit in page = 0
+                // then we check the current memory reference is modify or not
+                // if modify, then set dirty bit = 1
+                if(dirty.get(refString[i]) == false) {
                     dirty.put(refString[i], modify[i]);
                 }
             }
-//          if the current memory reference is modify, menas we need to set dirty bit
-//          cost++
-            if(modify[i] == true)
-                cost++;
         }
         System.out.format("MyAlgo %10d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
     }

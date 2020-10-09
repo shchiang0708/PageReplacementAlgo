@@ -39,16 +39,12 @@ public class ARB extends PageAlgo{
             }
             else{ // current reference string is in page
                 ref.put(refString[i], true);
-                cost++;
-                // Update dirty bit
-                if(!dirty.get(refString[i]))
+                // Update dirty bit, only when the recorded dirty bit in page = 0
+                // then we check the current memory reference is modify or not
+                // if modify, then set dirty bit = 1
+                if(dirty.get(refString[i]) == false)
                     dirty.put(refString[i], modify[i]);
             }
-//          if the current memory reference is modify, menas we need to set dirty bit
-//          cost++
-            if(modify[i] == true)
-                cost++;
-
             count++;
             if(count == interval){
                 count = 1;
