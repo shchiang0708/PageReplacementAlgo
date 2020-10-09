@@ -2,10 +2,10 @@ import java.util.*;
 
 public class Main {
     private static final int lengthOfRefString = 200000;
-    private static final boolean[] modify = generateModify(25);
     private static final int[] randomRefString = generateRandom();
     private static final int[] localityRefString = generateLocality();
     private static final int[] MyRefString = generateMyPick();
+    private static final int prob = 25; // The probability of modify
     public static void main(String[] args) {
 
         int[] refString;
@@ -43,17 +43,17 @@ public class Main {
                 System.out.println("    \tPageFault\t\t Cost\tDiskWrite");
 
                 // FIFO
-                FIFO fifo = new FIFO(refString, modify, frameSize);
+                FIFO fifo = new FIFO(refString, frameSize, prob);
                 fifo.run();
                 // Additional reference bit
-                ARB arb = new ARB(refString, modify, frameSize);
+                ARB arb = new ARB(refString, frameSize, prob);
                 arb.run();
                 // Enhanced Second Chance
-                ESC esc = new ESC(refString, modify, frameSize);
+                ESC esc = new ESC(refString, frameSize, prob);
                 esc.run();
                 // My algorithm
                 // Based on FIFO, but running with dirty bits.
-                MyAlgo myAlgo = new MyAlgo(refString, modify, frameSize);
+                MyAlgo myAlgo = new MyAlgo(refString, frameSize, prob);
                 myAlgo.run();
 
                 System.out.println();

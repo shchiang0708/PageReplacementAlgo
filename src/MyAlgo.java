@@ -1,11 +1,15 @@
+import java.util.Random;
+
 public class MyAlgo extends PageAlgo{
-    public MyAlgo(int[] refString, boolean[] modify, int frameSize){
-        super(refString, modify, frameSize);
+    public MyAlgo(int[] refString, int frameSize, int prob){
+        super(refString, frameSize, prob);
     }
     @Override
     public void run() {
         for(int i = 0; i < refString.length; i++){
             int size = page.size();
+            Random rand = new Random();
+            int p = rand.nextInt(100);
             if(!page.contains(refString[i])){ // page fault
                 pageFault++;
                 if(size == frameSize){ // frame is full
@@ -18,15 +22,19 @@ public class MyAlgo extends PageAlgo{
                     dirty.remove(out);
                 }
                 page.add(refString[i]);
-                dirty.put(refString[i], modify[i]);
+                if(p < prob){
+                    dirty.put(refString[i], true);
+                }else{
+                    dirty.put(refString[i], false);
+                }
             }
             else{ // current reference string is in page
 
                 // Update dirty bit, only when the recorded dirty bit in page = 0
                 // then we check the current memory reference is modify or not
                 // if modify, then set dirty bit = 1
-                if(dirty.get(refString[i]) == false) {
-                    dirty.put(refString[i], modify[i]);
+                if(p < prob){
+                    dirty.put(refString[i], true);
                 }
             }
         }
