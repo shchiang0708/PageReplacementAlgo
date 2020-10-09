@@ -30,7 +30,8 @@ public class FIFO extends PageAlgo{
                 if(!dirty.get(refString[i]))
                     dirty.put(refString[i], modify[i]);
             }
-//          if modify bit = 1, cost++
+//          if the current memory reference is modify, menas we need to set dirty bit
+//          cost++
             if(modify[i] == true)
                 cost++;
         }

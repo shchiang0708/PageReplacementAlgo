@@ -44,7 +44,8 @@ public class ARB extends PageAlgo{
                 if(!dirty.get(refString[i]))
                     dirty.put(refString[i], modify[i]);
             }
-//          if modify bit = 1, cost++
+//          if the current memory reference is modify, menas we need to set dirty bit
+//          cost++
             if(modify[i] == true)
                 cost++;
 
@@ -69,9 +70,11 @@ public class ARB extends PageAlgo{
                     cand.add(n);                      // and the current ARB = 0, then add into candidate
                 }
             }
-            list = new LinkedList<>(cand);
-            if(list.size() == 0)
-                return page.get(0);
+            // if cand.size() == 0 || cand.size == list.size()
+            // means the current bit of ARB of reference string in the page
+            // are whole same
+            if(cand.size() > 0 && cand.size() < list.size())
+                list = new LinkedList<>(cand);
         }
         return list.get(0);
     }

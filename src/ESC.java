@@ -31,6 +31,8 @@ public class ESC extends PageAlgo{
                 if(!dirty.get(refString[i]))
                     dirty.put(refString[i], modify[i]);
             }
+//          if the current memory reference is modify, menas we need to set dirty bit
+//          cost++
             if(modify[i] == true)
                 cost++;
         }
@@ -67,7 +69,6 @@ public class ESC extends PageAlgo{
             }
         }
 
-        cost++;
         return page.get(0);
     }
 }
