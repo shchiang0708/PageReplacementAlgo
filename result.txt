@@ -1,118 +1,118 @@
-"C:\Program Files\Java\jdk1.8.0_251\bin\java.exe" "-javaagent:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\lib\idea_rt.jar=50674:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_251\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\rt.jar;D:\NSYSU\課程\Advanced Operation System\HW1\PageReplacementAlgo\out\production\PageReplacementAlgo" Main
+"C:\Program Files\Java\jdk1.8.0_251\bin\java.exe" "-javaagent:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\lib\idea_rt.jar=50889:D:\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_251\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\rt.jar;D:\NSYSU\課程\Advanced Operation System\HW1\PageReplacementAlgo\out\production\PageReplacementAlgo" Main
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
 1
 Frame Size = 20
     	PageFault		 Cost	DiskWrite
-FIFO       197148       49654       49654
-ARB        197122       74732       49732
-ESC        195567       50926       49062
-MyAlgo     195532       48889       48889
+FIFO       197220       49656       49656
+ARB        197229       74879       49879
+ESC        195699       52952       48816
+MyAlgo     195752       48672       48672
 
 Frame Size = 40
     	PageFault		 Cost	DiskWrite
-FIFO       192071       49345       49345
-ARB        191985       74555       49555
-ESC        190716       50941       47662
-MyAlgo     190756       47345       47345
+FIFO       191758       49369       49369
+ARB        191884       74453       49453
+ESC        190924       56582       48208
+MyAlgo     190803       47772       47772
 
 Frame Size = 60
     	PageFault		 Cost	DiskWrite
-FIFO       186734       49176       49176
-ARB        186698       73960       48960
-ESC        185794       50928       46537
-MyAlgo     185837       46359       46359
+FIFO       186929       49190       49190
+ARB        186891       73949       48949
+ESC        185882       58512       46167
+MyAlgo     185824       46160       46160
 
 Frame Size = 80
     	PageFault		 Cost	DiskWrite
-FIFO       181289       48941       48941
-ARB        181402       73745       48745
-ESC        180716       49878       44791
-MyAlgo     180742       45322       45322
+FIFO       182021       48943       48943
+ARB        181938       74063       49063
+ESC        181130       61095       45378
+MyAlgo     180981       45308       45308
 
 Frame Size = 100
     	PageFault		 Cost	DiskWrite
-FIFO       176596       48714       48714
-ARB        176501       73779       48779
-ESC        175615       49027       43575
-MyAlgo     175729       44119       44119
+FIFO       177101       48473       48473
+ARB        177092       73464       48464
+ESC        175924       62478       43649
+MyAlgo     175997       43950       43950
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
 2
 Frame Size = 20
     	PageFault		 Cost	DiskWrite
-FIFO       108053       42300       42300
-ARB        108653       61545       36545
-ESC        108802       39394       29184
-MyAlgo     108514       27879       27879
+FIFO       104045       41696       41696
+ARB        104448       60560       35560
+ESC        104587       71590       28405
+MyAlgo     104749       27027       27027
 
 Frame Size = 40
     	PageFault		 Cost	DiskWrite
-FIFO        24037       18373       18373
-ARB         23884       41884       16884
-ESC         25144       11474        8005
-MyAlgo      25542        7018        7018
+FIFO        17876       13649       13649
+ARB         17986       37507       12507
+ESC         19581       33051        6144
+MyAlgo      19932        5521        5521
 
 Frame Size = 60
     	PageFault		 Cost	DiskWrite
-FIFO          940         880         880
-ARB           933       25873         873
-ESC          2766         924         885
-MyAlgo       3282         870         870
+FIFO         1175        1115        1115
+ARB          1174       26114        1114
+ESC          4024        2419        1128
+MyAlgo       4326        1104        1104
 
 Frame Size = 80
     	PageFault		 Cost	DiskWrite
-FIFO          923         843         843
-ARB           922       25842         842
-ESC          2888         864         848
-MyAlgo       3283         830         830
+FIFO         1175        1095        1095
+ARB          1164       26084        1084
+ESC          3872        2642        1099
+MyAlgo       3874        1085        1085
 
 Frame Size = 100
     	PageFault		 Cost	DiskWrite
-FIFO          922         822         822
-ARB           921       25821         821
-ESC          2746         831         818
-MyAlgo       3057         810         810
+FIFO         1094         994         994
+ARB          1092       25992         992
+ESC          3541        2136         993
+MyAlgo       3591         982         982
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
 3
 Frame Size = 20
     	PageFault		 Cost	DiskWrite
-FIFO        48134       23253       23253
-ARB         31012       32834        7834
-ESC         39062       17213       10524
-MyAlgo      45962       12138       12138
+FIFO        47904       23338       23338
+ARB         30882       32638        7638
+ESC         38523       35295       10375
+MyAlgo      45743       12202       12202
 
 Frame Size = 40
     	PageFault		 Cost	DiskWrite
-FIFO        37207       14712       14712
-ARB         30199       32827        7827
-ESC         34081       13654        8921
-MyAlgo      35615        9171        9171
+FIFO        37056       14824       14824
+ARB         30066       32634        7634
+ESC         33696       20048        8828
+MyAlgo      35479        9136        9136
 
 Frame Size = 60
     	PageFault		 Cost	DiskWrite
-FIFO        33778       11940       11940
-ARB         29451       32707        7707
-ESC         31572       11958        8159
-MyAlgo      32561        8322        8322
+FIFO        33602       12132       12132
+ARB         29302       32718        7718
+ESC         31648       15488        8335
+MyAlgo      32685        8403        8403
 
 Frame Size = 80
     	PageFault		 Cost	DiskWrite
-FIFO        31787       10744       10744
-ARB         28704       32756        7756
-ESC         30425       11441        8002
-MyAlgo      30836        7747        7747
+FIFO        31514       10669       10669
+ARB         28460       32677        7677
+ESC         30100       14528        7866
+MyAlgo      30803        7838        7838
 
 Frame Size = 100
     	PageFault		 Cost	DiskWrite
-FIFO        30242       10030       10030
-ARB         27893       32640        7640
-ESC         28929       10577        7362
-MyAlgo      29705        7337        7337
+FIFO        29999        9929        9929
+ARB         27656       32581        7581
+ESC         28810       13288        7423
+MyAlgo      29506        7409        7409
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
