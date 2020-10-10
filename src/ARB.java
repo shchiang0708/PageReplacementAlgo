@@ -7,7 +7,7 @@ public class ARB extends PageAlgo{
     private Map<Integer, boolean[]> additionalRef;
     public ARB(int[] refString, int frameSize, int prob){
         super(refString, frameSize, prob);
-        count = 1;
+        count = 0;
         additionalRef = new HashMap<>();
     }
 
@@ -48,7 +48,7 @@ public class ARB extends PageAlgo{
             }
             count++;
             if(count == interval){
-                count = 1;
+                count = 0;
                 updateARB();
                 cost++;
             }

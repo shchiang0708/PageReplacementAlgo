@@ -51,14 +51,18 @@ public class ESC extends PageAlgo{
         // 2. find (0, 1)
         for(int i = 0; i < page.size(); i++){
             if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == true){
+                if(i != 0) // if (0, 1) is found in the head of the frame
+                    cost++;// then we dont need to clear reference bit.
                 return page.get(i);
+            }else{
+                ref.put(page.get(i), false); // else, we clear reference bit bypass.
             }
         }
-        // 3. clear reference bit, cost++
-        for(int i = 0; i < page.size(); i++){
-            ref.put(page.get(i), false);
-        }
-        cost++;
+//        // 3. clear reference bit, cost++
+//        for(int i = 0; i < page.size(); i++){
+//            ref.put(page.get(i), false);
+//        }
+//        cost++;
         // 4. find (0, 0) again
         for(int i = 0; i < page.size(); i++){
             if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){
