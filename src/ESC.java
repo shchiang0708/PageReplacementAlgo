@@ -1,10 +1,8 @@
 import java.util.Random;
 
 public class ESC extends PageAlgo{
-    private int pointer;
     public ESC(int[] refString, int frameSize, int prob){
         super(refString, frameSize, prob);
-        this.pointer = 0;
     }
     @Override
     public void run() {
@@ -46,23 +44,19 @@ public class ESC extends PageAlgo{
     private int findVictim(){
         // 1. find (0, 0)
         for(int i = 0; i < page.size(); i++){
-            pointer = (pointer + i) % frameSize;
-            if(ref.get(page.get(pointer)) == false && dirty.get(page.get(pointer)) == false){
-                return page.get(pointer);
+            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){
+                return page.get(i);
             }
         }
-        pointer = (pointer + 1) % frameSize; // Point to the original pointer.
         // 2. find (0, 1)
         for(int i = 0; i < page.size(); i++){
-            pointer = (pointer + i) % frameSize;
-            if(ref.get(page.get(pointer)) == false && dirty.get(page.get(pointer)) == true){
-                return page.get(pointer);
+            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == true){
+                return page.get(i);
             }else{
-                ref.put(page.get(pointer), false); // Clear the reference bit bypass until we find victim
+                ref.put(page.get(i), false); // Clear the reference bit bypass until we find victim
                 cost++;                      // if clear, then we need cost.
             }
         }
-        pointer = (pointer + 1) % frameSize; // Point to the original pointer.
 //        // 3. clear reference bit, cost++
 //        for(int i = 0; i < page.size(); i++){
 //            ref.put(page.get(i), false);
@@ -70,17 +64,14 @@ public class ESC extends PageAlgo{
 //        cost++;
         // 4. find (0, 0) again
         for(int i = 0; i < page.size(); i++){
-            pointer = (pointer + i) % frameSize;
-            if(ref.get(page.get(pointer)) == false && dirty.get(page.get(pointer)) == false){
-                return page.get(pointer);
+            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){
+                return page.get(i);
             }
         }
-        pointer = (pointer + 1) % frameSize; // Point to the original pointer.
         // 5. find (0, 1) again
         for(int i = 0; i < page.size(); i++){
-            pointer = (pointer + i) % frameSize;
-            if(ref.get(page.get(pointer)) == false && dirty.get(page.get(pointer)) == true){
-                return page.get(pointer);
+            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == true){
+                return page.get(i);
             }
         }
         // This should not happened.
