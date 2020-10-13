@@ -158,7 +158,7 @@ public class Main {
 
         // Select a consecutive pages of length 7 simulated as a function
         int range = 7;
-        int start = rand.nextInt(793) + 1;
+        int start = rand.nextInt(794) + 1;
 
         System.out.println();
         //int[] s = {1,2,3,4,5};
@@ -172,7 +172,7 @@ public class Main {
 //                        refString[idx++] = s[i];
 //                    }
 //                }
-                for (int i = start; i <= start + range; i++) {
+                for (int i = start; i < start + range; i++) {
                     if(idx < lengthOfRefString) {
                         refString[idx++] = i;
                     }

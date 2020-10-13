@@ -43,76 +43,76 @@ How to pick?
 2
 Frame Size = 20
     	PageFault		 Cost	DiskWrite
-FIFO       104045       41696       41696
-ARB        104448       60560       35560
-ESC        104587       71590       28405
-MyAlgo     104749       27027       27027
+FIFO       101691       41604       41604
+ARB        101415       59702       34702
+ESC        101601       71390       27536
+MyAlgo     101499       26246       26246
 
 Frame Size = 40
     	PageFault		 Cost	DiskWrite
-FIFO        17876       13649       13649
-ARB         17986       37507       12507
-ESC         19581       33051        6144
-MyAlgo      19932        5521        5521
+FIFO        14562       11009       11009
+ARB         14708       35108       10108
+ESC         16545       27141        5177
+MyAlgo      16780        4599        4599
 
 Frame Size = 60
     	PageFault		 Cost	DiskWrite
-FIFO         1175        1115        1115
-ARB          1174       26114        1114
-ESC          4024        2419        1128
-MyAlgo       4326        1104        1104
+FIFO         1065        1005        1005
+ARB          1060       26000        1000
+ESC          3372        2212        1023
+MyAlgo       3770        1001        1001
 
 Frame Size = 80
     	PageFault		 Cost	DiskWrite
-FIFO         1175        1095        1095
-ARB          1164       26084        1084
-ESC          3872        2642        1099
-MyAlgo       3874        1085        1085
+FIFO         1049         969         969
+ARB          1039       25959         959
+ESC          3252        2443         981
+MyAlgo       3661         966         966
 
 Frame Size = 100
     	PageFault		 Cost	DiskWrite
-FIFO         1094         994         994
-ARB          1092       25992         992
-ESC          3541        2136         993
-MyAlgo       3591         982         982
+FIFO          992         892         892
+ARB           990       25890         890
+ESC          2930        1973         893
+MyAlgo       3399         888         888
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
 3
 Frame Size = 20
     	PageFault		 Cost	DiskWrite
-FIFO        47904       23338       23338
-ARB         30882       32638        7638
-ESC         38523       35295       10375
-MyAlgo      45743       12202       12202
+FIFO        50381       22992       22992
+ARB         34706       33765        8765
+ESC         41899       32655       11096
+MyAlgo      48103       12623       12623
 
 Frame Size = 40
     	PageFault		 Cost	DiskWrite
-FIFO        37056       14824       14824
-ARB         30066       32634        7634
-ESC         33696       20048        8828
-MyAlgo      35479        9136        9136
+FIFO        40463       15330       15330
+ARB         33787       33804        8804
+ESC         37501       20135        9827
+MyAlgo      39163       10043       10043
 
 Frame Size = 60
     	PageFault		 Cost	DiskWrite
-FIFO        33602       12132       12132
-ARB         29302       32718        7718
-ESC         31648       15488        8335
-MyAlgo      32685        8403        8403
+FIFO        37023       12867       12867
+ARB         32869       33670        8670
+ESC         34997       16557        9174
+MyAlgo      36063        9183        9183
 
 Frame Size = 80
     	PageFault		 Cost	DiskWrite
-FIFO        31514       10669       10669
-ARB         28460       32677        7677
-ESC         30100       14528        7866
-MyAlgo      30803        7838        7838
+FIFO        34955       11489       11489
+ARB         31992       33527        8527
+ESC         33601       15283        8701
+MyAlgo      34432        8705        8705
 
 Frame Size = 100
     	PageFault		 Cost	DiskWrite
-FIFO        29999        9929        9929
-ARB         27656       32581        7581
-ESC         28810       13288        7423
-MyAlgo      29506        7409        7409
+FIFO        33404       10919       10919
+ARB         31125       33562        8562
+ESC         32278       14261        8281
+MyAlgo      33098        8317        8317
 
 How to pick?
 (1)Random pick (2)Locality pick (3)My pick (4)Exit
