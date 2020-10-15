@@ -51,9 +51,10 @@ public class ARB extends PageAlgo{
                 count = 0;
                 updateARB();
                 cost++;
+                interrupt++;
             }
         }
-        System.out.format("ARB %13d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
+        System.out.format("ARB %13d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);
     }
     private int findVictim(){
         List<Integer> list = new LinkedList<>(frame);

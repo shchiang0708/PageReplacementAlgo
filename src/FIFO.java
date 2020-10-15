@@ -36,6 +36,6 @@ public class FIFO extends PageAlgo{
                 }
             }
         }
-        System.out.format("FIFO %12d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
+        System.out.format("FIFO %12d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);
     }
 }

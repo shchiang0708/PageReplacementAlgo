@@ -38,7 +38,7 @@ public class MyAlgo extends PageAlgo{
                 }
             }
         }
-        System.out.format("MyAlgo %10d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
+        System.out.format("MyAlgo %10d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);
     }
 
     private int findVictim(){

@@ -40,7 +40,7 @@ public class Main {
             int frameSize = 20;
             while(frameSize <= 100) {
                 System.out.println("Frame Size = " + frameSize);
-                System.out.println("    \tPageFault\t\t Cost\tDiskWrite");
+                System.out.println("    \tPageFault\tInterrupt\tDiskWrite\t\t Cost");
 
                 // FIFO
                 FIFO fifo = new FIFO(refString, frameSize, prob);

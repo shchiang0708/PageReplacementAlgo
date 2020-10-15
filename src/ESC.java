@@ -38,7 +38,7 @@ public class ESC extends PageAlgo{
                 }
             }
         }
-        System.out.format("ESC %13d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
+        System.out.format("ESC %13d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);
     }
 
     private int findVictim(){
@@ -55,6 +55,7 @@ public class ESC extends PageAlgo{
             }
             ref.put(frame.get(i), false); // Clear the reference bit bypass until we find victim
             cost++;                      // if clear, then we need cost.
+            interrupt++;
         }
 //        // 3. clear reference bit, cost++
 //        for(int i = 0; i < frame.size(); i++){
