@@ -7,10 +7,10 @@ public class MyAlgo extends PageAlgo{
     @Override
     public void run() {
         for(int i = 0; i < refString.length; i++){
-            int size = page.size();
+            int size = frame.size();
             Random rand = new Random();
             int p = rand.nextInt(100);
-            if(!page.contains(refString[i])){ // page fault
+            if(!frame.contains(refString[i])){ // page fault
                 pageFault++;
                 if(size == frameSize){ // frame is full
                     int out = findVictim();
@@ -18,17 +18,17 @@ public class MyAlgo extends PageAlgo{
                     if(isModify) {
                         WriteToDisk();
                     }
-                    page.remove(new Integer(out));
+                    frame.remove(new Integer(out));
                     dirty.remove(out);
                 }
-                page.add(refString[i]);
+                frame.add(refString[i]);
                 if(p < prob){
                     dirty.put(refString[i], true);
                 }else{
                     dirty.put(refString[i], false);
                 }
             }
-            else{ // current reference string is in page
+            else{ // current reference string is in frame
 
                 // Update dirty bit, only when the recorded dirty bit in page = 0
                 // then we check the current memory reference is modify or not
@@ -42,10 +42,10 @@ public class MyAlgo extends PageAlgo{
     }
 
     private int findVictim(){
-        for(int i = 0; i < page.size(); i++){
-            if(dirty.get(page.get(i)) == false)
-                return page.get(i);
+        for(int i = 0; i < frame.size(); i++){
+            if(dirty.get(frame.get(i)) == false)
+                return frame.get(i);
         }
-        return page.get(0);
+        return frame.get(0);
     }
 }

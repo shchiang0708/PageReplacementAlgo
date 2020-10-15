@@ -13,7 +13,7 @@ public class Main {
 //        int frameSize = 3;
 //        refString = randomRefString;
 //        fifo = new FIFO(refString, modify, frameSize);
-//        fifo.run();
+//        fifo.run();2
 //        opt = new Optimal(refString, modify, frameSize);
 //        opt.run();
 //        esc = new ESC(refString, modify, frameSize);
@@ -93,16 +93,6 @@ public class Main {
 //            idx = idx + 1;
 //        }
         return n;
-    }
-    public static boolean[] generateModify(double prob){
-        boolean[] res = new boolean[lengthOfRefString];
-        Random rand = new Random();
-
-        for(int i = 0; i < lengthOfRefString; i++){
-            double ran = rand.nextInt(100);
-            res[i] = ran < prob;
-        }
-        return res;
     }
 
     public static int[] generateLocality(){

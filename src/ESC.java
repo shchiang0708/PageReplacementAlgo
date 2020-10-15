@@ -7,10 +7,10 @@ public class ESC extends PageAlgo{
     @Override
     public void run() {
         for(int i = 0; i < refString.length; i++){
-            int size = page.size();
+            int size = frame.size();
             Random rand = new Random();
             int p = rand.nextInt(100);
-            if(!page.contains(refString[i])){
+            if(!frame.contains(refString[i])){
                 pageFault++;
                 if(size == frameSize){ // frame is full
                     int out = findVictim();
@@ -18,10 +18,10 @@ public class ESC extends PageAlgo{
                     if(isModify)
                         WriteToDisk();
                     ref.remove(out);
-                    page.remove(new Integer(out));
+                    frame.remove(new Integer(out));
                     dirty.remove(out);
                 }
-                page.add(refString[i]);
+                frame.add(refString[i]);
                 ref.put(refString[i], false);
                 if(p < prob){
                     dirty.put(refString[i], true);
@@ -29,7 +29,7 @@ public class ESC extends PageAlgo{
                     dirty.put(refString[i], false);
                 }
             }
-            else{// current reference string is in page
+            else{// current reference string is in frame
 
                 // if frame contains current string, set reference bit = 1
                 ref.put(refString[i], true);
@@ -43,38 +43,38 @@ public class ESC extends PageAlgo{
 
     private int findVictim(){
         // 1. find (0, 0)
-        for(int i = 0; i < page.size(); i++){
-            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){
-                return page.get(i);
+        for(int i = 0; i < frame.size(); i++){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == false){
+                return frame.get(i);
             }
         }
         // 2. find (0, 1)
-        for(int i = 0; i < page.size(); i++){
-            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == true){
-                return page.get(i);
-            }else{
-                ref.put(page.get(i), false); // Clear the reference bit bypass until we find victim
-                cost++;                      // if clear, then we need cost.
+        for(int i = 0; i < frame.size(); i++){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == true){
+                return frame.get(i);
             }
+            ref.put(frame.get(i), false); // Clear the reference bit bypass until we find victim
+            cost++;                      // if clear, then we need cost.
         }
 //        // 3. clear reference bit, cost++
-//        for(int i = 0; i < page.size(); i++){
-//            ref.put(page.get(i), false);
+//        for(int i = 0; i < frame.size(); i++){
+//            ref.put(frame.get(i), false);
 //        }
-//        cost++;
+
         // 4. find (0, 0) again
-        for(int i = 0; i < page.size(); i++){
-            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == false){
-                return page.get(i);
+        for(int i = 0; i < frame.size(); i++){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == false){
+                return frame.get(i);
             }
         }
         // 5. find (0, 1) again
-        for(int i = 0; i < page.size(); i++){
-            if(ref.get(page.get(i)) == false && dirty.get(page.get(i)) == true){
-                return page.get(i);
+        for(int i = 0; i < frame.size(); i++){
+            if(ref.get(frame.get(i)) == false && dirty.get(frame.get(i)) == true){
+                return frame.get(i);
             }
         }
         // This should not happened.
+        System.out.println("error");
         return -1;
     }
 }

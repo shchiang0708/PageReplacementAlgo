@@ -14,10 +14,10 @@ public class ARB extends PageAlgo{
     @Override
     public void run() {
         for(int i = 0; i < refString.length; i++){
-            int size = page.size();
+            int size = frame.size();
             Random rand = new Random();
             int p = rand.nextInt(100);
-            if(!page.contains(refString[i])) { // page fault
+            if(!frame.contains(refString[i])) { // page fault
                 pageFault++;
                 if (size == frameSize) { // frame is full
                     // Check the replaced page is modified, if so, write to disk
@@ -26,12 +26,12 @@ public class ARB extends PageAlgo{
                     if (isModify) {
                         WriteToDisk();
                     }
-                    page.remove(new Integer(out));
+                    frame.remove(new Integer(out));
                     ref.remove(out);
                     dirty.remove(out);
                     additionalRef.remove(out);
                 }
-                page.add(refString[i]);
+                frame.add(refString[i]);
                 if(p < prob){
                     dirty.put(refString[i], true);
                 }else{
@@ -40,7 +40,7 @@ public class ARB extends PageAlgo{
                 ref.put(refString[i], false);
                 additionalRef.put(refString[i], new boolean[8]);
             }
-            else{ // current reference string is in page
+            else{ // current reference string is in frame
                 ref.put(refString[i], true);
                 if(p < prob){
                     dirty.put(refString[i], true);
@@ -56,7 +56,7 @@ public class ARB extends PageAlgo{
         System.out.format("ARB %13d" + "%12d" + "%12d\n", pageFault, cost, diskWrite);
     }
     private int findVictim(){
-        List<Integer> list = new LinkedList<>(page);
+        List<Integer> list = new LinkedList<>(frame);
 
         for(int i = 0; i < 8; i++){
             int size = list.size();
@@ -76,11 +76,11 @@ public class ARB extends PageAlgo{
         return list.get(0);
     }
     private void updateARB(){
-        List<Integer> list = new LinkedList<>(page);
+        List<Integer> list = new LinkedList<>(frame);
 
         // Shift right 1 bit
         for(int i = 0; i < list.size(); i++){
-            int n = list.get(i); // get each reference string in page
+            int n = list.get(i); // get each reference string in frame
             boolean[] ar = additionalRef.get(n);
 
             for(int j = ar.length - 1; j > 0; j--){

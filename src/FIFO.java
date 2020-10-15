@@ -8,29 +8,29 @@ public class FIFO extends PageAlgo{
 
     public void run(){
         for(int i = 0; i < refString.length; i++){
-            int size = page.size();
+            int size = frame.size();
             Random rand = new Random();
             int p = rand.nextInt(100);
-            if(!page.contains(refString[i])) { // page fault
+            if(!frame.contains(refString[i])) { // page fault
                 pageFault++;
                 if (size == frameSize) { // frame is full
                     // Check the replaced page is modified, if so, write to disk
-                    int out = page.get(0);
+                    int out = frame.get(0);
                     boolean isModify = dirty.get(out);
                     if (isModify) {
                         WriteToDisk();
                     }
                     dirty.remove(out);
-                    page.remove(0);
+                    frame.remove(0);
                 }
-                page.add(refString[i]);
+                frame.add(refString[i]);
                 if(p < prob){
                     dirty.put(refString[i], true);
                 }else{
                     dirty.put(refString[i], false);
                 }
             }
-            else{ // current reference string is in page
+            else{ // current reference string is in frame
                 if(p < prob){
                     dirty.put(refString[i], true);
                 }
