@@ -6,6 +6,7 @@ public class Main {
     private static final int[] localityRefString = generateLocality();
     private static final int[] MyRefString = generateMyPick();
     private static final int prob = 25; // The probability of modify
+    private static final boolean[] modify = generateModify(prob);
     public static void main(String[] args) {
 
         int[] refString;
@@ -43,17 +44,17 @@ public class Main {
                 System.out.println("    \tPageFault\tInterrupt\tDiskWrite\t\t Cost");
 
                 // FIFO
-                FIFO fifo = new FIFO(refString, frameSize, prob);
+                FIFO fifo = new FIFO(refString, frameSize, modify);
                 fifo.run();
                 // Additional reference bit
-                ARB arb = new ARB(refString, frameSize, prob);
+                ARB arb = new ARB(refString, frameSize, modify);
                 arb.run();
                 // Enhanced Second Chance
-                ESC esc = new ESC(refString, frameSize, prob);
+                ESC esc = new ESC(refString, frameSize, modify);
                 esc.run();
                 // My algorithm
                 // Based on FIFO, but running with dirty bits.
-                MyAlgo myAlgo = new MyAlgo(refString, frameSize, prob);
+                MyAlgo myAlgo = new MyAlgo(refString, frameSize, modify);
                 myAlgo.run();
 
                 System.out.println();
@@ -61,6 +62,17 @@ public class Main {
             }
         }
 
+    }
+
+    public static boolean[] generateModify(int prob){
+        boolean[] res = new boolean[lengthOfRefString];
+        Random rand = new Random();
+
+        for(int i = 0; i < lengthOfRefString; i++){
+            int r = rand.nextInt(100);
+            res[i] = r < prob;
+        }
+        return res;
     }
 
     public static int[] generateRandom(){

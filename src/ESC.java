@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class ESC extends PageAlgo{
-    public ESC(int[] refString, int frameSize, int prob){
-        super(refString, frameSize, prob);
+    public ESC(int[] refString, int frameSize, boolean[] modify){
+        super(refString, frameSize, modify);
     }
     @Override
     public void run() {
@@ -23,19 +23,14 @@ public class ESC extends PageAlgo{
                 }
                 frame.add(refString[i]);
                 ref.put(refString[i], false);
-                if(p < prob){
-                    dirty.put(refString[i], true);
-                }else{
-                    dirty.put(refString[i], false);
-                }
+                dirty.put(refString[i], modify[i]);
             }
             else{// current reference string is in frame
 
                 // if frame contains current string, set reference bit = 1
                 ref.put(refString[i], true);
-                if(p < prob){
-                    dirty.put(refString[i], true);
-                }
+                if(modify[i] == true)
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("ESC %13d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);

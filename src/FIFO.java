@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class FIFO extends PageAlgo{
 
-    public FIFO(int[] refString, int frameSize, int prob) {
-        super(refString, frameSize, prob);
+    public FIFO(int[] refString, int frameSize, boolean[] modify) {
+        super(refString, frameSize, modify);
     }
 
     public void run(){
@@ -24,16 +24,11 @@ public class FIFO extends PageAlgo{
                     frame.remove(0);
                 }
                 frame.add(refString[i]);
-                if(p < prob){
-                    dirty.put(refString[i], true);
-                }else{
-                    dirty.put(refString[i], false);
-                }
+                dirty.put(refString[i], modify[i]);
             }
             else{ // current reference string is in frame
-                if(p < prob){
-                    dirty.put(refString[i], true);
-                }
+                if(modify[i] == true)
+                    dirty.put(refString[i], modify[i]);
             }
         }
         System.out.format("FIFO %12d" + "%12d" + "%12d" + "%12d\n", pageFault, interrupt, diskWrite, cost);
