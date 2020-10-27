@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ARB extends PageAlgo{
 
-    private final static int interval = 8; // Time interval of OS
+    private final static int interval = 80; // Time interval of OS
     private int count;
     private Map<Integer, boolean[]> additionalRef;
     public ARB(int[] refString, int frameSize, boolean[] modify){
